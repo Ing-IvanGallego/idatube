@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<title>Descargador de musica</title>
+	<link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
+  	<link rel="stylesheet" href="{{url_for('static', filename='css/estilo.css')}}">
+
+</head>
+<body>
+	<div  class="container-sm mt-5">
+			{% with messages =get_flashed_messages() %}
+				{% if messages %}
+					{%for message in messages%}
+						
+						  <div class="modal-dialog" role="document">
+						    <div class="modal-content rounded-4 shadow">
+						      <div class="modal-header border-bottom-0">
+						        <center><h5 class="modal-title">{{message}}</h5></center>
+						      </div>
+						    </div>
+						  </div>
+					{%endfor%}
+				{%endif%}
+			{%endwith%}
+
+		<form action="/descargar" method="POST" style="border: solid;border-color: #000; border-radius: 10px;padding: 20px" >
+			<h1 class="p-1 m-auto text-center">Descarga Tus Discos Favoritos</h1>
+			<input class="form-control mt-lg-5 border-danger " type="text" placeholder="https://www.youtube.com/watch?v=PAlhwleYIy4 or PAlhwleYIy4" name="enlace" required>
+			<center>
+			<select class="btn-group mt-lg-5 border-danger border-success form-control text-center " style="width:15%; font-size: 26px; " name="formato">
+				<option value="mp4" >video</option>
+				<option value="m4a">audio</option>
+			</select>
+			</center>
+			<center>
+					<button class="btn-secondary m-3 p-2 border-danger mt-5 " type="submit" id="audio" style="width: 20%"> <h4> Descargar </h4></button>
+			</center>
+		</form>
+
+		<div class="container-fluid mt-5">
+            <div class="row">
+                 <div class="col-xs-6" style="width: 50% " >
+                    <center>
+                        <a href="/listarCanciones" >
+                          	<img src="static/imagen/misCanciones.jpg" height="150px" width="200px"><br>
+                           	<button>Caciones</button>  
+                        </a>
+                    </center>
+                </div>
+
+                <div class="col-xs-6" style="width: 50%  ; align-self: left;" >
+                   	<center>
+                        <a href="/listarVideos" >
+                           	<img src="static/imagen/misVideos.jpg" height="150px" width="200px"><br> 
+                           	<button class=" border-danger border-success">Videos</button>
+                      	</a>
+                    </center>
+                </div>    
+            </div>
+        </div>
+	</div>		
+</body>
+</html>
